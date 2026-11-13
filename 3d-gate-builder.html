@@ -98,6 +98,9 @@ aside{counter-reset:step}
 @media (max-width:820px){main{flex-direction:column}.stage{flex:none;height:58vh}aside{width:auto;border-left:0;border-top:1px solid var(--line);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}}
 #mydrive{position:absolute;left:max(12px,env(safe-area-inset-left,0px));top:12px;background:var(--royal);color:#fff;border:0;border-radius:999px;font:600 13px var(--f-body);padding:9px 14px;cursor:pointer;box-shadow:0 2px 8px rgba(10,20,40,.3)}
 #mydrive:focus-visible,.ph button:focus-visible{outline:2px solid #fff;outline-offset:2px}
+/* narrow screens and the website embed: stack the overlay buttons so none sit on top of each other */
+@media (max-width:820px){#mydrive{top:10px;left:10px}.views{top:54px;left:10px;right:10px;justify-content:flex-start}.openbar{top:94px;left:10px;right:auto}.hint{display:none}}
+@media (max-width:380px){.openbar{top:132px}}
 .linkbtn{background:none;border:0;padding:2px 0;color:var(--royal);font:600 13px var(--f-body);text-decoration:underline;cursor:pointer;text-align:left;align-self:flex-start}
 .ph{position:absolute;inset:0;background:#1A2235;display:flex;flex-direction:column}
 .ph[hidden]{display:none}
