@@ -101,6 +101,8 @@ aside{counter-reset:step}
 /* narrow screens and the website embed: stack the overlay buttons so none sit on top of each other */
 @media (max-width:820px){#mydrive{top:10px;left:10px}.views{top:54px;left:10px;right:10px;justify-content:flex-start}.openbar{top:94px;left:10px;right:auto}.hint{display:none}}
 @media (max-width:380px){.openbar{top:132px}}
+/* phones and the website embed: one scrolling page instead of a scrolling panel inside a fixed-height box, with room at the end so nothing sits under the website's chat button */
+@media (max-width:820px){html,body{height:auto;min-height:100%}main{flex:none}aside{overflow:visible;padding-bottom:110px}}
 .linkbtn{background:none;border:0;padding:2px 0;color:var(--royal);font:600 13px var(--f-body);text-decoration:underline;cursor:pointer;text-align:left;align-self:flex-start}
 .ph{position:absolute;inset:0;background:#1A2235;display:flex;flex-direction:column}
 .ph[hidden]{display:none}
