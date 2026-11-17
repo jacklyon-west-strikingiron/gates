@@ -130,6 +130,7 @@ aside{counter-reset:step}
 
 <div class="siwm" aria-hidden="true"></div>
 <main>
+  <div class="left">
   <div class="stage">
     <canvas id="cv" aria-label="3D view of your gate. Drag to turn, scroll or pinch to zoom."></canvas>
     <div class="openbar" id="openBar" role="group" aria-label="Show the gates"><button type="button" data-v="0" aria-pressed="true">Closed</button><button type="button" data-v="0.5">Half way</button><button type="button" data-v="1">Open</button></div>
@@ -157,6 +158,15 @@ aside{counter-reset:step}
         <button type="button" class="pri" id="phBack2">Back to 3D model</button>
       </div>
     </div>
+  </div>
+  <details class="drivebox" id="driveBox"><summary>Make it look like my drive (optional)</summary>
+        <div class="dgrid"><div><p class="q">What shape is your drive?</p>
+        <div class="seg" id="dShape"><button type="button" data-v="long" aria-pressed="true">Long and narrow</button><button type="button" data-v="wide">Short and wide</button><button type="button" data-v="round">Round</button><button type="button" data-v="free">Curved, free-form</button></div>
+        </div><div><p class="q">Where is the gate on your drive?</p>
+        <div class="seg" id="dPos"><button type="button" data-v="left">Left side</button><button type="button" data-v="mid" aria-pressed="true">Middle</button><button type="button" data-v="right">Right side</button></div>
+        </div><div><p class="q">What is your drive made of?</p>
+        <select id="dSurf" aria-label="Drive surface"></select>
+        </div></div><p class="note">This only changes the picture. It doesn't change the price.</p></details>
   </div>
   <aside>
     <div class="step"><h2>Your design</h2>
@@ -204,14 +214,7 @@ aside{counter-reset:step}
       <div id="fixWrap" hidden><p class="q">How should the boards be fixed?</p><div class="seg" id="fixing"><button type="button" data-v="bolts" aria-pressed="true">Visible bolts</button><button type="button" data-v="hidden">Hidden fixings</button></div>
         <p class="note">Both are the same price.</p></div>
       <button type="button" class="linkbtn" id="mydrive2">Show me it on my driveway (optional)</button>
-      <details class="drivebox" id="driveBox"><summary>Make it look like my drive (optional)</summary>
-        <p class="q">What shape is your drive?</p>
-        <div class="seg" id="dShape"><button type="button" data-v="long" aria-pressed="true">Long and narrow</button><button type="button" data-v="wide">Short and wide</button><button type="button" data-v="round">Round</button><button type="button" data-v="free">Curved, free-form</button></div>
-        <p class="q">Where is the gate on your drive?</p>
-        <div class="seg" id="dPos"><button type="button" data-v="left">Left side</button><button type="button" data-v="mid" aria-pressed="true">Middle</button><button type="button" data-v="right">Right side</button></div>
-        <p class="q">What is your drive made of?</p>
-        <select id="dSurf" aria-label="Drive surface"></select>
-        <p class="note">This only changes the picture. It doesn't change the price.</p></details></div>
+</div>
     <div class="step" id="matStep"><h2>Steel or aluminium</h2>
       <div class="seg" id="mat"><button type="button" data-v="steel" aria-pressed="true">Steel</button><button type="button" data-v="alu">Aluminium</button></div>
       <p class="note">Steel is stronger and heavier. Aluminium never rusts and is lighter on the hinges.</p></div>
@@ -314,7 +317,10 @@ aside{counter-reset:step}
 
 <style>
 .disc{display:flex;gap:10px;align-items:center;margin:10px 0}.disc input{flex:0 0 140px;text-transform:uppercase}.disc .note{margin:0}
-.drivebox{margin-top:10px}.drivebox summary{cursor:pointer;color:var(--royal);font:600 13px var(--f-body);text-decoration:underline}.drivebox .seg{flex-wrap:wrap}.drivebox select{width:100%}
+.left{flex:1;display:flex;flex-direction:column;min-width:0;min-height:0}.left .stage{flex:1;min-height:0}
+.drivebox{flex:none;background:var(--panel);border-top:1px solid var(--line);padding:10px 16px;max-height:50vh;overflow-y:auto}.drivebox summary{cursor:pointer;color:var(--royal);font:600 14px var(--f-body);text-decoration:underline}.drivebox .seg{flex-wrap:wrap}.drivebox select{width:100%}
+.dgrid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:6px 18px;align-items:start}.drivebox .note{margin:6px 0 0}
+@media (max-width:820px){.left{flex:none}.left .stage{flex:none}.dgrid{grid-template-columns:1fr}.drivebox{max-height:none;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}}
 .staff{margin-top:18px;font-size:13px;opacity:.85}.staff summary{cursor:pointer;color:var(--muted,#8a94a6)}.staff input{margin:8px 0;width:100%}
 #takeoff table{width:100%;border-collapse:collapse;margin:6px 0 12px}#takeoff td,#takeoff th{padding:3px 4px;border-bottom:1px solid rgba(128,128,128,.25);text-align:left;vertical-align:top}
 #takeoff td.n,#takeoff th.n{text-align:right;white-space:nowrap}#takeoff h4{margin:12px 0 2px;font-size:13px}#takeoff .prov{font-size:12px;opacity:.75}
