@@ -2,7 +2,7 @@
 // 1. Reprice the gate on the server with the builder's own code (delivery from the postcode, looked up here).
 // 2. Refuse if anything is unpriced, or if the price differs from the one the customer was shown.
 // 3. Save the order, then open a GoCardless Instant Bank Pay page or a Stripe Checkout page for exactly that amount.
-import {reprice} from '../lib/pricer.mjs';
+import {reprice,warm} from '../lib/pricer.mjs';
 import {reply,CORS,PAGE_URL,newRef,saveOrder,stripe,stripeLive,gocardless,packCfg,chunks} from '../lib/pay.mjs';
 
 const clean=(v,n)=>String(v==null?'':v).replace(/[\u0000-\u001f<>]/g,' ').trim().slice(0,n);
@@ -15,6 +15,7 @@ export default async (req)=>{
   if(req.method!=='POST')return reply(405,{error:'POST only'});
   const raw=await req.text();if(raw.length>40000)return reply(413,{error:'That order is too big to send.'});
   let b;try{b=JSON.parse(raw);}catch(e){return reply(400,{error:'Bad request.'});}
+  if(b&&b.warm){try{await warm();}catch(e){}return reply(200,{ok:true});}   // sent when the customer opens the pay form, so the pricing is loaded by the time they pay
   const method=b.method==='bank'?'bank':b.method==='card'?'card':null;
   const cfg=b.cfg&&typeof b.cfg==='object'&&!Array.isArray(b.cfg)?b.cfg:null;
   const c=b.customer||{};

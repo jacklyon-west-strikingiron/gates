@@ -28,5 +28,7 @@ export async function reprice(cfg){
   if(!HOOK)stubPage();
   const deliv=cfg.postcode?await HOOK.delivery(cfg.postcode):null;
   return {...HOOK.price(cfg,deliv),deliv};}
+// load the page's pricing without pricing anything (wakes a cold server)
+export async function warm(){if(!HOOK)stubPage();}
 // for tests: price with a delivery result given directly
 export function priceWith(cfg,deliv){if(!HOOK)stubPage();return HOOK.price(cfg,deliv);}
