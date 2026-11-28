@@ -1,0 +1,4 @@
+node_modules/
+.netlify/
+netlify/lib/page_script.cjs
+netlify/site/

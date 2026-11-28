@@ -1,0 +1,9 @@
+# Striking Iron payment server. Netlify builds this repo: it copies the gate builder's script for the server to price with,
+# and runs the functions in netlify/functions (checkout, Stripe webhook, GoCardless webhook) under /api/.
+[build]
+  command = "node netlify/build_core.mjs"
+  publish = "netlify/site"
+  functions = "netlify/functions"
+
+[functions]
+  node_bundler = "esbuild"

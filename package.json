@@ -1,0 +1,8 @@
+{
+  "name": "striking-iron-gates",
+  "private": true,
+  "description": "Striking Iron gate builder and its payment server (Netlify functions)",
+  "dependencies": {
+    "@netlify/blobs": "^8.1.0"
+  }
+}
